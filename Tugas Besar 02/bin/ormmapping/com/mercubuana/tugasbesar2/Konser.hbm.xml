@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: 
+License Type: Evaluation
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.mercubuana.tugasbesar2.Konser" table="Konser" lazy="false">
+		<id name="idKonser" column="id_konser" type="integer" unsaved-value="0">
+			<generator class="native">
+			</generator>
+		</id>
+		<property name="namaKonser" column="nama_konser" type="string" length="25" not-null="true" lazy="false"/>
+		<property name="jenisTiket" column="jenis_tiket" type="character" length="1" not-null="true" lazy="false"/>
+		<property name="jumlahTiket" column="jumlah_tiket" type="integer" length="3" not-null="true" lazy="false"/>
+		<property name="sisaTiket" column="sisa_tiket" type="integer" length="3" not-null="true" lazy="false"/>
+		<set name="ORM_Pemesan" lazy="true" cascade="save-update,lock" inverse="true">
+			<key column="Konserid_konser" not-null="true"/>
+			<one-to-many class="com.mercubuana.tugasbesar2.Pemesan"/>
+		</set>
+	</class>
+</hibernate-mapping>
